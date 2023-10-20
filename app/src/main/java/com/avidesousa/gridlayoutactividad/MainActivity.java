@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         GridLayout g=findViewById(R.id.gridBotones);
         Random r=new Random();
-
+        int colorInicial[]=new int[18];
         View.OnClickListener listener=new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,8 +29,12 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener listenerReset=new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button btn=(Button)v;
-                btn.setBackgroundColor(Color.argb(128,r.nextInt(),r.nextInt(),r.nextInt()));
+
+                for(int i=0;i<g.getChildCount();i++){
+                    Button btn=(Button)g.getChildAt(i);
+                    btn.setBackgroundColor(colorInicial[i]);
+
+                }
             }
         };
 
@@ -44,10 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 b.setText("btn"+i);
                 b.setOnClickListener(listener);
             }
-
-
-
-            b.setBackgroundColor(Color.argb(128,r.nextInt(),r.nextInt(),r.nextInt()));
+            colorInicial[i]=Color.argb(128,r.nextInt(),r.nextInt(),r.nextInt());
+            b.setBackgroundColor(colorInicial[i]);
             g.addView(b);
         }
 
